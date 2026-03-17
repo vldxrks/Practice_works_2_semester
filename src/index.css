@@ -1,0 +1,192 @@
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #0f0f13;
+  --surface:   #1a1a24;
+  --border:    #2e2e42;
+  --accent:    #7c6af7;
+  --accent-2:  #c084fc;
+  --text:      #e8e8f0;
+  --muted:     #6b6b88;
+  --done-bg:   #1e1e2e;
+  --done-text: #4a4a66;
+  --radius:    12px;
+  --shadow:    0 8px 32px rgba(0,0,0,.45);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', 'Fira Mono', 'Courier New', monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 1rem 4rem;
+}
+
+/* ── App wrapper ── */
+.app {
+  width: 100%;
+  max-width: 540px;
+}
+
+/* ── Header ── */
+.app-header {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.app-header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-header .subtitle {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Stats bar ── */
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.stats-bar span strong {
+  color: var(--accent-2);
+}
+
+/* ── Todo list ── */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+}
+
+/* ── Todo item ── */
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color .2s, transform .15s;
+  animation: slideIn .25s ease both;
+}
+
+.todo-item:hover {
+  border-color: var(--accent);
+  transform: translateX(3px);
+}
+
+.todo-item.done {
+  background: var(--done-bg);
+  border-color: transparent;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* stagger children */
+.todo-item:nth-child(1)  { animation-delay: .05s; }
+.todo-item:nth-child(2)  { animation-delay: .10s; }
+.todo-item:nth-child(3)  { animation-delay: .15s; }
+.todo-item:nth-child(4)  { animation-delay: .20s; }
+.todo-item:nth-child(5)  { animation-delay: .25s; }
+.todo-item:nth-child(6)  { animation-delay: .30s; }
+.todo-item:nth-child(7)  { animation-delay: .35s; }
+
+/* priority dot */
+.priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.priority-dot.high   { background: #f87171; box-shadow: 0 0 6px #f87171aa; }
+.priority-dot.medium { background: #fbbf24; box-shadow: 0 0 6px #fbbf24aa; }
+.priority-dot.low    { background: #34d399; box-shadow: 0 0 6px #34d399aa; }
+
+/* content */
+.todo-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.todo-title {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.todo-item.done .todo-title {
+  text-decoration: line-through;
+  color: var(--done-text);
+}
+
+.todo-meta {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.todo-category {
+  padding: 1px 7px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* status badge */
+.todo-status {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  padding: 3px 9px;
+  border-radius: 99px;
+  align-self: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.todo-status.pending  { background: rgba(124,106,247,.15); color: var(--accent); }
+.todo-status.done     { background: rgba(52,211,153,.1);   color: #34d399; }
+.todo-status.in-progress { background: rgba(251,191,36,.1); color: #fbbf24; }
+
+/* ── Footer ── */
+.app-footer {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
