@@ -190,3 +190,38 @@ body {
   text-align: center;
   letter-spacing: 0.05em;
 }
+.form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.form button {
+  padding: 8px 14px;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.todo-item button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.todo-item button:hover {
+  color: red;
+}
